@@ -1,0 +1,6 @@
+cmake_minimum_required(VERSION 3.24)
+project(CS213_2023_20220054_20220191_20220120_A1_Part2)
+
+set(CMAKE_CXX_STANDARD 17)
+
+add_executable(CS213_2023_20220054_20220191_20220120_A1_Part2 main.cpp)
