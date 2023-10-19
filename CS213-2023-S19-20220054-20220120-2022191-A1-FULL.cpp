@@ -518,7 +518,6 @@ void SkewRight() {
         }
         begin -= step;
     }
-
 }
 
 void SkewUp() {
@@ -792,11 +791,8 @@ int main() {
                 shuffle();
                 saveImage();
                 goto re;
-
         }
     }
-
-
 }
 
 
