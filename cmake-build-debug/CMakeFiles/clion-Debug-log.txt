@@ -1,4 +1,25 @@
-"C:\Program Files\JetBrains\CLion 2022.3.3\bin\cmake\win\x64\bin\cmake.exe" -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - MinGW Makefiles" -S C:\Users\PC\Desktop\ass1\photoeditorc- -B C:\Users\PC\Desktop\ass1\photoeditorc-\cmake-build-debug
--- Configuring done
--- Generating done
--- Build files have been written to: C:/Users/PC/Desktop/ass1/photoeditorc-/cmake-build-debug
+/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -DCMAKE_BUILD_TYPE=Debug -G "CodeBlocks - Unix Makefiles" -S /Users/macbook/Documents/osama/CS213-2023–S24-20220120-20220191-20220054-A1-FULL -B /Users/macbook/Documents/osama/CS213-2023–S24-20220120-20220191-20220054-A1-FULL/cmake-build-debug
+-- The C compiler identification is AppleClang 15.0.0.15000040
+-- The CXX compiler identification is AppleClang 15.0.0.15000040
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: /Library/Developer/CommandLineTools/usr/bin/cc - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: /Library/Developer/CommandLineTools/usr/bin/c++ - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done (1.9s)
+CMake Error at CMakeLists.txt:6 (add_executable):
+  Cannot find source file:
+
+    CS213-2023-S19-20220054-20220120-2022191-A1-FULL.cpp
+
+
+CMake Error at CMakeLists.txt:6 (add_executable):
+  No SOURCES given to target: CS213_2023_20220054_20220191_20220120_A1_Part2
+
+
+CMake Generate step failed.  Build files cannot be regenerated correctly.

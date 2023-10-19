@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6"/>
+	<Project>
+		<Option title="CS213_2023_20220054_20220191_20220120_A1_Part2"/>
+		<Option makefile_is_custom="1"/>
+		<Option compiler="gcc"/>
+		<Option virtualFolders="CMake Files\;"/>
+		<Build>
+			<Target title="all">
+				<Option working_dir="/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 all"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CS213_2023_20220054_20220191_20220120_A1_Part2">
+				<Option output="/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/CS213_2023_20220054_20220191_20220120_A1_Part2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 CS213_2023_20220054_20220191_20220120_A1_Part2"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="CS213_2023_20220054_20220191_20220120_A1_Part2/fast">
+				<Option output="/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/CS213_2023_20220054_20220191_20220120_A1_Part2" prefix_auto="0" extension_auto="0"/>
+				<Option working_dir="/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug"/>
+				<Option object_output="./"/>
+				<Option type="1"/>
+				<Option compiler="gcc"/>
+				<Compiler>
+					<Add directory="/Library/Developer/CommandLineTools/usr/bin/../include/c++/v1"/>
+					<Add directory="/usr/local/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include"/>
+					<Add directory="/Library/Developer/CommandLineTools/usr/include"/>
+					<Add directory="/System/Library/Frameworks"/>
+					<Add directory="/Library/Frameworks"/>
+				</Compiler>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 CS213_2023_20220054_20220191_20220120_A1_Part2/fast"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="edit_cache">
+				<Option working_dir="/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 edit_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+			<Target title="rebuild_cache">
+				<Option working_dir="/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug"/>
+				<Option type="4"/>
+				<MakeCommands>
+					<Build command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 rebuild_cache"/>
+					<CompileFile command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 &quot;$file&quot;"/>
+					<Clean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+					<DistClean command="/usr/bin/make -j12 -f &quot;/Users/macbook/Documents/osama/photoeditorc-/cmake-build-debug/Makefile&quot;  VERBOSE=1 clean"/>
+				</MakeCommands>
+			</Target>
+		</Build>
+		<Unit filename="/Users/macbook/Documents/osama/photoeditorc-/CS213-2023-S19-20220054-20220120-2022191-A1-FULL.cpp">
+			<Option target="CS213_2023_20220054_20220191_20220120_A1_Part2"/>
+		</Unit>
+		<Unit filename="/Users/macbook/Documents/osama/photoeditorc-/CS213-2023-S19-20220054-20220120-2022191-A1BOUNS.cpp">
+			<Option target="CS213_2023_20220054_20220191_20220120_A1_Part2"/>
+		</Unit>
+		<Unit filename="/Users/macbook/Documents/osama/photoeditorc-/bmplib.cpp">
+			<Option target="CS213_2023_20220054_20220191_20220120_A1_Part2"/>
+		</Unit>
+		<Unit filename="/Users/macbook/Documents/osama/photoeditorc-/bmplib.h">
+			<Option target="CS213_2023_20220054_20220191_20220120_A1_Part2"/>
+		</Unit>
+		<Unit filename="/Users/macbook/Documents/osama/photoeditorc-/CMakeLists.txt">
+			<Option virtualFolder="CMake Files\"/>
+		</Unit>
+	</Project>
+</CodeBlocks_project_file>

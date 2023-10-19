@@ -1,3 +1,0 @@
-C:/Users/PC/Desktop/ass1/photoeditorc-/cmake-build-debug/CMakeFiles/CS213_2023_20220054_20220191_20220120_A1_Part2.dir
-C:/Users/PC/Desktop/ass1/photoeditorc-/cmake-build-debug/CMakeFiles/edit_cache.dir
-C:/Users/PC/Desktop/ass1/photoeditorc-/cmake-build-debug/CMakeFiles/rebuild_cache.dir

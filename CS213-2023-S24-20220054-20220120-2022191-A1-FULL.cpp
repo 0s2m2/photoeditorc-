@@ -688,109 +688,116 @@ void shuffle() {
     }
 }
 
-int main() {
+int main()  {
     cout << "Enter your name please" << "\n";
     string user_name;
     cin >> user_name;
     cout << "Hello " << user_name << "\n";
-    re:;
-
-    cout << "Chose the number of filter you would like to apply or enter 0 to exit" << "\n"
-         << "1-black_and_WhiteFilter\n"
-            "2-InvertImage\n"
-            "3-MergeImages\n"
-            "4-FlipImage\n"
-            "5-DarkenAndLighten\n"
-            "6-Mirror\n"
-            "7-Rotate\n"
-            "8-crop\n"
-            "9-DetectImageEdges\n"
-            "10-blur\n"
-            "11-shrink\n"
-            "12-EnlargeImage\n"
-            "13-SkewRight\n"
-            "14-SkewUp\n"
-            "15-Shuffle\n";
-    int ord;
-    cin >> ord;
-
-    if (ord) { //decied filter based on user input
-        switch (ord) {
+    char n = 'a';
+    loadImage();
+    while (n != '0') {
+        cout << "Choose the number of filter you would like to apply or enter 0 to exit" << "\n"
+             << "1-black_and_WhiteFilter\n"
+                "2-InvertImage\n"
+                "3-MergeImages\n"
+                "4-FlipImage\n"
+                "5-DarkenAndLighten\n"
+                "6-Mirror\n"
+                "7-Rotate\n"
+                "8-crop\n"
+                "9-DetectImageEdges\n"
+                "10-blur\n"
+                "11-shrink\n"
+                "12-EnlargeImage\n"
+                "13-SkewRight\n"
+                "14-SkewUp\n"
+                "15-Shuffle\n"
+                "16-save\n";
+        int n;
+        cin >> n;
+        switch (n) {
             case 1:
-                loadImage();
+                //loadImage();
                 black_and_WhiteFilter();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 2:
-                loadImage();
+                // loadImage();
                 InvertImage();
-                saveImage();
-                goto re;
+                // saveImage();
+                break;
             case 3:
-                loadImage();
+                // loadImage();
                 MergeImages();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 4:
-                loadImage();
+                // loadImage();
                 FlipImage();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 5:
-                loadImage();
+                // loadImage();
                 DarkenAndLighten();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 6:
-                loadImage();
+                // loadImage();
                 Mirror();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 7:
-                loadImage();
+                // loadImage();
                 Rotate();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 8:
-                loadImage();
+                //  loadImage();
                 crop();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 9:
-                loadImage();
+                //  loadImage();
                 DetectImageEdges();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 10:
-                loadImage();
+                //  loadImage();
                 blur();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 11:
-                loadImage();
+                //  loadImage();
                 shrink();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 12:
-                loadImage();
+                //  loadImage();
                 EnlargeImage();
-                saveImage();
-                goto re;
+                // saveImage();
+                break;
             case 13:
-                loadImage();
+                //  loadImage();
                 SkewRight();
-                saveImage();
-                goto re;
+                //saveImage();
+                break;
             case 14:
-                loadImage();
+                //  loadImage();
                 SkewUp();
-                saveImage();
-                goto re;
+                // saveImage();
+                break;
             case 15:
-                loadImage();
+                //  loadImage();
                 shuffle();
+                //saveImage();
+                break;
+            case 16 :
                 saveImage();
-                goto re;
+                break;
+            case 0 :
+                return 0;
+            default:
+                break;
         }
     }
 }
