@@ -714,7 +714,7 @@ int main() {
     int ord;
     cin >> ord;
 
-    if (ord) {
+    if (ord) { //decied filter based on user input
         switch (ord) {
             case 1:
                 loadImage();
