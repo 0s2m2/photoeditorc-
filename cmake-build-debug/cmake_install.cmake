@@ -1,4 +1,4 @@
-# Install script for directory: C:/Users/LEGION/Desktop/CS213-2023-20220054-20220191-20220120-A1-Part2
+# Install script for directory: C:/Users/PC/Desktop/ass1/photoeditorc-
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -45,5 +45,5 @@ endif()
 
 string(REPLACE ";" "\n" CMAKE_INSTALL_MANIFEST_CONTENT
        "${CMAKE_INSTALL_MANIFEST_FILES}")
-file(WRITE "C:/Users/LEGION/Desktop/CS213-2023-20220054-20220191-20220120-A1-Part2/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
+file(WRITE "C:/Users/PC/Desktop/ass1/photoeditorc-/cmake-build-debug/${CMAKE_INSTALL_MANIFEST}"
      "${CMAKE_INSTALL_MANIFEST_CONTENT}")
