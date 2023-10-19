@@ -472,13 +472,15 @@ void Rotate() {
         for (int i = SIZE - 1; i >= 0; --i) {
             for (int j = 0; j < SIZE; j++) {
                 for (int k = 0; k < RGB; ++k) {
-                    other[j][i][k] = image[SIZE - i - 1][j][k];}
+                    other[j][i][k] = image[SIZE - i - 1][j][k];
+                }
             }
         }
         for (int i = 0; i < SIZE; i++) {
             for (int j = 0; j < SIZE; j++) {
                 for (int k = 0; k < RGB; ++k) {
-                    image[i][j][k] = other[i][j][k];}
+                    image[i][j][k] = other[i][j][k];
+                }
             }
         }
     } else if (x == 180) {
@@ -536,13 +538,17 @@ void Rotate() {
         }
     }
 }
-void DetectImageEdges(){
-    unsigned char other [SIZE][SIZE][RGB];
+
+void DetectImageEdges() {
+    unsigned char other[SIZE][SIZE][RGB];
     black_and_WhiteFilter(); // turn image into b&w
-    for (int i = 1; i < SIZE-1; ++i) {
-        for (int j = 1; j < SIZE-1; ++j) {
+    for (int i = 1; i < SIZE - 1; ++i) {
+        for (int j = 1; j < SIZE - 1; ++j) {
             for (int k = 0; k < RGB; ++k) {
-                if ((image[i + 1][j][0]+image[i + 1][j][1]+image[i + 1][j][2])/3 != (image[i - 1][j][0]+image[i - 1][j][1]+image[i - 1][j][2])/3 || (image[i][j + 1][0]+image[i][j + 1][1]+image[i][j + 1][2])/3 != (image[i][j - 1][0]+image[i][j - 1][1]+image[i][j - 1][2])/3 ){
+                if ((image[i + 1][j][0] + image[i + 1][j][1] + image[i + 1][j][2]) / 3 !=
+                    (image[i - 1][j][0] + image[i - 1][j][1] + image[i - 1][j][2]) / 3 ||
+                    (image[i][j + 1][0] + image[i][j + 1][1] + image[i][j + 1][2]) / 3 !=
+                    (image[i][j - 1][0] + image[i][j - 1][1] + image[i][j - 1][2]) / 3) {
                     other[i][j][k] = 0; // لو البيكسل اللي فوقيها لا تساوي اللي تحتيها او البيكسل اللي علي يمينها لا تساوي اللي علي يسارها هتبقي لونها اسود
                 } else {
                     other[i][j][k] = 255; // غير كده هيبقي لونها ابيض
@@ -550,7 +556,7 @@ void DetectImageEdges(){
             }
         }
     }
-    for (int i = 0; i < SIZE ; ++i) {
+    for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
             for (int k = 0; k < RGB; ++k) {
                 image[i][j][k] = other[i][j][k];
@@ -558,12 +564,13 @@ void DetectImageEdges(){
         }
     }
 }
-void Mirror(){
+
+void Mirror() {
     unsigned char other[SIZE][SIZE][RGB];
     char s;
-    cout<<"Mirror (l)eft, (r)ight, (u)pper, (d)own side?";
-    cin>>s;
-    if (s=='l') {
+    cout << "Mirror (l)eft, (r)ight, (u)pper, (d)own side?";
+    cin >> s;
+    if (s == 'l') {
         for (int i = 0; i < SIZE; ++i) {
             for (int j = 0; j < SIZE / 2; ++j) {
                 for (int k = 0; k < RGB; ++k) {
@@ -595,8 +602,7 @@ void Mirror(){
                 }
             }
         }
-    }
-    else if(s=='r') {
+    } else if (s == 'r') {
         for (int i = 0; i < SIZE; ++i) { // نفس فكرة اللي قبلها
             for (int j = 127; j < SIZE; ++j) {
                 for (int k = 0; k < RGB; ++k) {
@@ -628,10 +634,8 @@ void Mirror(){
                 }
             }
         }
-    }
-
-    else if(s=='u'){
-        for (int i = 0; i < SIZE/2; ++i) { // نفس فكرة اللي قبلها بس هنعمل flip vertical
+    } else if (s == 'u') {
+        for (int i = 0; i < SIZE / 2; ++i) { // نفس فكرة اللي قبلها بس هنعمل flip vertical
             for (int j = 0; j < SIZE; ++j) {
                 for (int k = 0; k < RGB; ++k) {
                     other[i][j][k] = image[i][j][k];
@@ -661,8 +665,7 @@ void Mirror(){
                     image[i][j][k] = other[i][j][k];
             }
         }
-    }
-    else if(s=='d'){
+    } else if (s == 'd') {
         for (int i = 127; i < SIZE; ++i) { // نفس فكرة اللي قبلها
             for (int j = 0; j < SIZE; ++j) {
                 for (int k = 0; k < RGB; ++k) {
@@ -680,7 +683,7 @@ void Mirror(){
                 }
             }
         }
-        for (int i = 0; i < SIZE/2; ++i) {
+        for (int i = 0; i < SIZE / 2; ++i) {
             for (int j = 0; j < SIZE; ++j) {
                 for (int k = 0; k < RGB; ++k) {
                     other[i][j][k] = image[i][j][k];
@@ -696,11 +699,12 @@ void Mirror(){
         }
     }
 }
-void crop(){
+
+void crop() {
     unsigned char other[SIZE][SIZE][RGB];
-    int x,y,w,l;
-    cout<<"Please enter x y l w: ";
-    cin>> x>>y>>l>>w;
+    int x, y, w, l;
+    cout << "Please enter x y l w: ";
+    cin >> x >> y >> l >> w;
     for (int i = 0; i < SIZE; ++i) {
         for (int j = 0; j < SIZE; ++j) {
             for (int k = 0; k < RGB; ++k) {
@@ -708,9 +712,9 @@ void crop(){
             }
         }
     }
-    for (int i = x; i < l+x; ++i) {
-        for (int j = y; j < w+y; ++j) {
-            for (int k = 0; k < RGB; ++k){
+    for (int i = x; i < l + x; ++i) {
+        for (int j = y; j < w + y; ++j) {
+            for (int k = 0; k < RGB; ++k) {
                 other[i][j][k] = image[i][j][k]; // هنملي الصورة علي حسب الابعاد اللي المستخدم هيحطها من الصورةالاصلية وهنسيب الباقي ابيض
             }
         }
@@ -736,32 +740,40 @@ void blur() {
     for (int i = 1; i < SIZE - 1; ++i) {
         for (int j = 1; j < SIZE - 1; ++j) {
             for (int k = 0; k < RGB; ++k) {
-                image[i][j][k] =(other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] + other[i - 1][j + 1][k] +
-                                 other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
+                image[i][j][k] =
+                        (other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] +
+                         other[i - 1][j + 1][k] +
+                         other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
             }
         }
     }
     for (int i = 1; i < SIZE - 1; ++i) {
         for (int j = 1; j < SIZE - 1; ++j) {
             for (int k = 0; k < RGB; ++k) {
-                image[i][j][k] =(other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] + other[i - 1][j + 1][k] +
-                                 other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
+                image[i][j][k] =
+                        (other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] +
+                         other[i - 1][j + 1][k] +
+                         other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
             }
         }
     }
     for (int i = 1; i < SIZE - 1; ++i) {
         for (int j = 1; j < SIZE - 1; ++j) {
             for (int k = 0; k < RGB; ++k) {
-                image[i][j][k] =(other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] + other[i - 1][j + 1][k] +
-                                 other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
+                image[i][j][k] =
+                        (other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] +
+                         other[i - 1][j + 1][k] +
+                         other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
             }
         }
     }
     for (int i = 1; i < SIZE - 1; ++i) {
         for (int j = 1; j < SIZE - 1; ++j) {
             for (int k = 0; k < RGB; ++k) {
-                image[i][j][k] =(other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] + other[i - 1][j + 1][k] +
-                                 other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
+                image[i][j][k] =
+                        (other[i][j + 1][k] + other[i][j - 1][k] + other[i - 1][j - 1][k] + other[i - 1][j][k] +
+                         other[i - 1][j + 1][k] +
+                         other[i + 1][j - 1][k] + other[i + 1][j][k] + other[i + 1][j + 1][k] + other[i][j][k]) / 9;
             }
         }
     }
@@ -783,13 +795,206 @@ void blur() {
         for (int i = 0; i < RGB; ++i) {
             //handling the rest of the array
             image[0][j][i] =
-                    (other[1][j + 1][i] + other[0][j - 1][i] + other[0][j + 1][i] + other[0][j][i] + other[1][j - 1][i] + other[1][j][i]) / 6;
+                    (other[1][j + 1][i] + other[0][j - 1][i] + other[0][j + 1][i] + other[0][j][i] +
+                     other[1][j - 1][i] + other[1][j][i]) / 6;
             image[j][0][i] =
-                    (other[1 + j][1][i] + other[j - 1][0][i] + other[j + 1][0][i] + other[j][0][i] + other[j - 1][1][i] + other[j][1][i]) / 6;
-            image[255][j][i] = (other[254][j + 1][i] + other[255][j - 1][i] + other[255][j + 1][i] + other[255][j][i] + other[254][j - 1][i] +
+                    (other[1 + j][1][i] + other[j - 1][0][i] + other[j + 1][0][i] + other[j][0][i] +
+                     other[j - 1][1][i] + other[j][1][i]) / 6;
+            image[255][j][i] = (other[254][j + 1][i] + other[255][j - 1][i] + other[255][j + 1][i] + other[255][j][i] +
+                                other[254][j - 1][i] +
                                 other[254][j][i]) / 6;
-            image[j][255][i] = (other[1 + j][254][i] + other[j - 1][255][i] + other[j + 1][255][i] + other[j][255][i] + other[j - 1][254][i] +
+            image[j][255][i] = (other[1 + j][254][i] + other[j - 1][255][i] + other[j + 1][255][i] + other[j][255][i] +
+                                other[j - 1][254][i] +
                                 other[j][254][i]) / 6;
         }
     }
+}
+
+void SkewRight() {
+    double degree;
+    unsigned char shrinkedimage[SIZE][SIZE][RGB];
+    cout << "Enter degree";
+    cin >> degree;
+    degree = (degree * 22) / (180 * 7);
+    int x = (256 / (1 + (1 / tan(degree))));
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            shrinkedimage[i][(j * x) / SIZE][0] = image[i][j][0];
+            shrinkedimage[i][(j * x) / SIZE][1] = image[i][j][1];
+            shrinkedimage[i][(j * x) / SIZE][2] = image[i][j][2];
+        }
+    }
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            for (int k = 0; k < RGB; ++k) {
+                image[i][j][k] = 255;
+
+            }
+
+        }
+
+    }
+
+    double begin = SIZE - x;
+    double step = begin / SIZE;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = int(begin); j < begin + x; ++j) {
+            image[i][j][0] = shrinkedimage[i][int(j - begin)][0];
+            image[i][j][1] = shrinkedimage[i][int(j - begin)][1];
+            image[i][j][2] = shrinkedimage[i][int(j - begin)][2];
+
+        }
+        begin -= step;
+    }
+
+}
+
+void SkewUp() {
+
+    double degree;
+    unsigned char shrinkedimage[SIZE][SIZE][RGB];
+    cout << "Enter degree";
+    cin >> degree;
+    degree = (degree * 22) / (180 * 7);
+    int x = (256 / (1 + (1 / tan(degree))));
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            shrinkedimage[(j * x) / SIZE][i][0] = image[j][i][0];
+            shrinkedimage[(j * x) / SIZE][i][1] = image[j][i][1];
+            shrinkedimage[(j * x) / SIZE][i][2] = image[j][i][2];
+        }
+    }
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            for (int k = 0; k < RGB; ++k) {
+                image[i][j][k] = 255;
+
+            }
+
+        }
+
+    }
+
+    double begin = SIZE - x;
+    double step = begin / SIZE;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = int(begin); j < begin + x; ++j) {
+            image[j][i][0] = shrinkedimage[int(j - begin)][i][0];
+            image[j][i][1] = shrinkedimage[int(j - begin)][i][1];
+            image[j][i][2] = shrinkedimage[int(j - begin)][i][2];
+
+        }
+        begin -= step;
+    }
+
+}
+
+int main() {
+    cout << "Enter your name please" << "\n";
+    string user_name;
+    cin >> user_name;
+    cout << "Hello " << user_name << "\n";
+    re:;
+
+    cout << "Chose the number of filter you would like to apply or enter 0 to exit" << "\n"
+         << "1-black_and_WhiteFilter\n"
+            "2-InvertImage\n"
+            "3-MergeImages\n"
+            "4-FlipImage\n"
+            "5-DarkenAndLighten\n"
+            "6-Mirror\n"
+            "7-Rotate\n"
+            "8-crop\n"
+            "9-DetectImageEdges\n"
+            "10-blur\n"
+            "11-shrink\n"
+            "12-EnlargeImage\n"
+            "13-SkewRight\n"
+            "14-SkewUp\n"
+            "15-Shuffle\n";
+    int ord;
+    cin >> ord;
+
+    if (ord) {
+        switch (ord) {
+            case 1:
+                loadImage();
+                black_and_WhiteFilter();
+                saveImage();
+                goto re;
+            case 2:
+                loadImage();
+                InvertImage();
+                saveImage();
+                goto re;
+            case 3:
+                loadImage();
+                MergeImages();
+                saveImage();
+                goto re;
+            case 4:
+                loadImage();
+                FlipImage();
+                saveImage();
+                goto re;
+            case 5:
+                loadImage();
+                DarkenAndLighten();
+                saveImage();
+                goto re;
+            case 6:
+                loadImage();
+                Mirror();
+                saveImage();
+                goto re;
+            case 7:
+                loadImage();
+                Rotate();
+                saveImage();
+                goto re;
+            case 8:
+                loadImage();
+                crop();
+                saveImage();
+                goto re;
+            case 9:
+                loadImage();
+                DetectImageEdges();
+                saveImage();
+                goto re;
+            case 10:
+                loadImage();
+                blur();
+                saveImage();
+                goto re;
+            case 11:
+                loadImage();
+                shrink();
+                saveImage();
+                goto re;
+            case 12:
+                loadImage();
+                EnlargeImage();
+                saveImage();
+                goto re;
+            case 13:
+                loadImage();
+                SkewRight();
+                saveImage();
+                goto re;
+            case 14:
+                loadImage();
+                SkewUp();
+                saveImage();
+                goto re;
+            case 15:
+                loadImage();
+                shuffle();
+                saveImage();
+                goto re;
+
+        }
+    }
+
+
 }
