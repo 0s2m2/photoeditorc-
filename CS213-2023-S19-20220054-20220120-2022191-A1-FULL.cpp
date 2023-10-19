@@ -238,6 +238,457 @@ void Mirror() {
     }
 }
 
+void Rotate() {
+    unsigned char other[SIZE][SIZE];
+    int x;
+    cout << "Rotate (90), (180) or (270) degrees?";
+    cin >> x;
+    if (x == 90) {
+        for (int i = SIZE - 1; i >= 0; --i) {
+            for (int j = 0; j < SIZE; j++) {
+                other[j][i] = image[SIZE - i - 1][j];
+            }
+        }
+        for (int i = 0; i < SIZE; i++) {
+            for (int j = 0; j < SIZE; j++) {
+                image[i][j] = other[i][j];
+            }
+        }
+    } else if (x == 180) {
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                int temp = image[i][j];
+                image[i][j] = image[i][255 - j];
+                image[i][255 - j] = temp;
+
+            }
+        }
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
+                int temp = image[i][j];
+                image[i][j] = image[255 - i][j];
+                image[255 - i][j] = temp;
+            }
+        }
+    } else if (x == 270) {
+        for (int i = SIZE - 1; i >= 0; --i) {
+            for (int j = 0; j < SIZE; ++j) {
+                other[j][i] = image[SIZE - i - 1][j];
+            }
+        }
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
+                image[i][j] = other[i][j];
+            }
+        }
+        for (int i = 0; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                int temp = image[i][j];
+                image[i][j] = image[i][255 - j];
+                image[i][255 - j] = temp;
+            }
+        }
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE; ++j) {
+                int temp = image[i][j];
+                image[i][j] = image[255 - i][j];
+                image[255 - i][j] = temp;
+            }
+        }
+    }
+}
+
+void crop() {
+    unsigned char other[SIZE][SIZE];
+    int x, y, w, l;
+    cout << "Please enter x y l w: ";
+    cin >> x >> y >> l >> w;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            other[i][j] = 255;
+        }
+    }
+    for (int i = x; i < l + x; ++i) {
+        for (int j = y; j < w + y; ++j) {
+            other[i][j] = image[i][j];
+        }
+    }
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            image[i][j] = other[i][j];
+        }
+    }
+}
+
+
+void DetectImageEdges() {
+    unsigned char other[SIZE][SIZE];
+    black_and_WhiteFilter();
+    for (int i = 1; i < SIZE - 1; ++i) {
+        for (int j = 1; j < SIZE - 1; ++j) {
+            if (image[i + 1][j] != image[i - 1][j] || image[i][j + 1] != image[i][j - 1]) {
+                other[i][j] = 0;
+            } else {
+                other[i][j] = 255;
+            }
+        }
+    }
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            image[i][j] = other[i][j];
+        }
+    }
+}
+
+
+void blur() {
+    unsigned char other[SIZE][SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            other[i][j] = image[i][j];
+        }
+    }
+    for (int i = 1; i < SIZE - 1; ++i) {
+        for (int j = 1; j < SIZE - 1; ++j) {
+            image[i][j] =(other[i][j + 1] + other[i][j - 1] + other[i - 1][j - 1] + other[i - 1][j] + other[i - 1][j + 1] +
+                          other[i + 1][j - 1] + other[i + 1][j] + other[i + 1][j + 1] + other[i][j]) / 9;
+        }
+    }
+    //handling edges
+    image[0][0] = (other[0][1] + other[1][1] + other[1][0] + other[0][0]) / 4;
+    image[0][255] = (other[0][254] + other[1][255] + other[1][254] + other[0][255]) / 4;
+    image[255][0] = (other[255][0] + other[255][1] + other[254][0] + other[254][1]) / 4;
+    image[255][255] = (other[255][255] + other[255][254] + other[254][255] + other[254][254]) / 4;
+
+
+    for (int j = 1; j < SIZE - 1; ++j) {
+        //handling the rest of the array
+        image[0][j] =
+                (other[1][j + 1] + other[0][j - 1] + other[0][j + 1] + other[0][j] + other[1][j - 1] + other[1][j]) / 6;
+        image[j][0] =
+                (other[1 + j][1] + other[j - 1][0] + other[j + 1][0] + other[j][0] + other[j - 1][1] + other[j][1]) / 6;
+        image[255][j] = (other[254][j + 1] + other[255][j - 1] + other[255][j + 1] + other[255][j] + other[254][j - 1] +
+                         other[254][j]) / 6;
+        image[j][255] = (other[1 + j][254] + other[j - 1][255] + other[j + 1][255] + other[j][255] + other[j - 1][254] +
+                         other[j][254]) / 6;
+    }
+}
+
+
+void EnlargeImage() {
+    unsigned char other[SIZE][SIZE];
+    cout << "Which quarter to enlarge 1, 2, 3 or 4?";
+    int n;
+    cin >> n;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            other[i][j] = image[i][j];
+        }
+    }
+//put every pixel of the quarter the user want to enlarge in the 4 pixels, the pixel it self and the other 3 surrounding it
+    if (n == 1) {
+        int k = 0, y = 0;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE / 2; j++) {
+                image[y][k] = other[i][j];
+                image[y + 1][k] = other[i][j];
+                image[y + 1][k + 1] = other[i][j];
+                image[y][k + 1] = other[i][j];
+                k += 2;
+            }
+            k = 0;
+            y += 2;
+        }
+    } else if (n == 2) {
+        int k = 0, y = 0;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = SIZE / 2; j < SIZE; j++) {
+                image[y][k] = other[i][j];
+                image[y + 1][k] = other[i][j];
+                image[y + 1][k + 1] = other[i][j];
+                image[y][k + 1] = other[i][j];
+                k += 2;
+            }
+            k = 0;
+            y += 2;
+        }
+    } else if (n == 3) {
+        int k = 0, y = 0;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; j++) {
+                image[y][k] = other[i][j];
+                image[y + 1][k] = other[i][j];
+                image[y + 1][k + 1] = other[i][j];
+                image[y][k + 1] = other[i][j];
+                k += 2;
+            }
+            k = 0;
+            y += 2;
+        }
+    } else if (n == 4) {
+        int k = 0, y = 0;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = SIZE / 2; j < SIZE; j++) {
+                image[y][k] = other[i][j];
+                image[y + 1][k] = other[i][j];
+                image[y + 1][k + 1] = other[i][j];
+                image[y][k + 1] = other[i][j];
+                k += 2;
+            }
+            k = 0;
+            y += 2;
+        }
+    }
+}
+
+
+void shrink() {
+    //skipping rows and columns to shrink the photo to the size the user wants
+    unsigned char other[SIZE][SIZE];
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            other[i][j] = image[i][j];
+            image[i][j] = 255;
+        }
+    }
+    cout << "Shrink to (1/2), (1/3) or (1/4)?";
+    string s;
+    cin >> s;
+    if (s == "1/2") {
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[i][j] = other[a][b];
+                b += 2;
+            }
+            b = 0;
+            a += 2;
+        }
+
+    } else if (s == "1/3") {
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i < SIZE / 3; ++i) {
+            for (int j = 0; j < SIZE / 3; ++j) {
+                image[i][j] = other[a][b];
+                b += 3;
+            }
+            b = 0;
+            a += 3;
+        }
+    } else if (s == "1/4") {
+        int a = 0;
+        int b = 0;
+        for (int i = 0; i < SIZE / 4; ++i) {
+            for (int j = 0; j < SIZE / 4; ++j) {
+                image[i][j] = other[a][b];
+                b += 4;
+            }
+            b = 0;
+            a += 4;
+        }
+    }
+}
+
+void SkewRight() {
+    double degree;
+    unsigned char shrinkedimage[SIZE][SIZE];
+    cout << "Enter degree";
+    cin >> degree;
+    degree = (degree * 22) / (180 * 7);
+    int x = (256 / (1 + (1 / tan(degree))));
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            shrinkedimage[i][(j * x) / SIZE] = image[i][j];
+        }
+    }
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            image[i][j] = 255;
+        }
+    }
+    double begin = SIZE - x;
+    double step = begin / SIZE;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = int(begin); j < begin + x; ++j) {
+            image[i][j] = shrinkedimage[i][int(j - begin)];
+
+        }
+        begin -= step;
+    }
+
+}
+
+void SkewUp() {
+    double degree;
+    unsigned char shrinkedimage[SIZE][SIZE];
+    cout << "Enter degree";
+    cin >> degree;
+    degree = (degree * 22) / (180 * 7);
+    int x = (256 / (1 + (1 / tan(degree))));
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            shrinkedimage[(j * x) / SIZE][i] = image[j][i];
+        }
+    }
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            image[i][j] = 255;
+        }
+    }
+    double begin = SIZE - x;
+    double step = begin / SIZE;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = int(begin); j < begin + x; ++j) {
+            image[j][i] = shrinkedimage[int(j - begin)][i];
+
+        }
+        begin -= step;
+    }
+}
+
+
+void shuffle() {
+    unsigned char other[SIZE][SIZE];
+    cout << "New order of quarters ? ";
+    int a, b, c, d;
+    cin >> a;
+    for (int i = 0; i < SIZE; ++i) {
+        for (int j = 0; j < SIZE; ++j) {
+            other[i][j] = image[i][j];
+        }
+    }
+    if (a == 2) {
+        int a = 0, b = 0;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = SIZE / 2; j < SIZE; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = 0;
+        }
+    } else if (a == 3) {
+        int a = 0, b = 0;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = 0;
+        }
+    } else if (a == 4) {
+        int a = 0, b = 0;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = SIZE / 2; j < SIZE; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = 0;
+        }
+    }
+    cin >> b;
+    if (b == 1) {
+        int a = 0, b = SIZE / 2;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = SIZE / 2;
+        }
+    } else if (b == 3) {
+        int a = 0, b = SIZE / 2;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = SIZE / 2;
+        }
+    } else if (b == 4) {
+        int a = 0, b = SIZE / 2;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = SIZE / 2; j < SIZE; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = SIZE / 2;
+        }
+    }
+    cin >> c;
+    if (c == 1) {
+        int a = SIZE / 2, b = 0;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = 0;
+        }
+    } else if (c == 2) {
+        int a = SIZE / 2, b = 0;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = SIZE / 2; j < SIZE; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = 0;
+        }
+    } else if (c == 4) {
+        int a = SIZE / 2, b = 0;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = SIZE / 2; j < SIZE; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = 0;
+        }
+    }
+    cin >> d;
+    if (d == 1) {
+        int a = SIZE / 2, b = SIZE / 2;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = SIZE / 2;
+        }
+    } else if (d == 2) {
+        int a = SIZE / 2, b = SIZE / 2;
+        for (int i = 0; i < SIZE / 2; ++i) {
+            for (int j = SIZE / 2; j < SIZE; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = SIZE / 2;
+        }
+    } else if (d == 3) {
+        int a = SIZE / 2, b = SIZE / 2;
+        for (int i = SIZE / 2; i < SIZE; ++i) {
+            for (int j = 0; j < SIZE / 2; ++j) {
+                image[a][b] = other[i][j];
+                b++;
+            }
+            a++;
+            b = SIZE / 2;
+        }
+    }
+}
+
+
 
 
 
