@@ -350,8 +350,9 @@ void blur() {
     }
     for (int i = 1; i < SIZE - 1; ++i) {
         for (int j = 1; j < SIZE - 1; ++j) {
-            image[i][j] =(other[i][j + 1] + other[i][j - 1] + other[i - 1][j - 1] + other[i - 1][j] + other[i - 1][j + 1] +
-                          other[i + 1][j - 1] + other[i + 1][j] + other[i + 1][j + 1] + other[i][j]) / 9;
+            image[i][j] =
+                    (other[i][j + 1] + other[i][j - 1] + other[i - 1][j - 1] + other[i - 1][j] + other[i - 1][j + 1] +
+                     other[i + 1][j - 1] + other[i + 1][j] + other[i + 1][j + 1] + other[i][j]) / 9;
         }
     }
     //handling edges
@@ -686,6 +687,116 @@ void shuffle() {
             b = SIZE / 2;
         }
     }
+}
+
+int main() {
+    cout << "Enter your name please" << "\n";
+    string user_name;
+    cin >> user_name;
+    cout << "Hello " << user_name << "\n";
+    re:;
+
+    cout << "Chose the number of filter you would like to apply or enter 0 to exit" << "\n"
+         << "1-black_and_WhiteFilter\n"
+            "2-InvertImage\n"
+            "3-MergeImages\n"
+            "4-FlipImage\n"
+            "5-DarkenAndLighten\n"
+            "6-Mirror\n"
+            "7-Rotate\n"
+            "8-crop\n"
+            "9-DetectImageEdges\n"
+            "10-blur\n"
+            "11-shrink\n"
+            "12-EnlargeImage\n"
+            "13-SkewRight\n"
+            "14-SkewUp\n"
+            "15-Shuffle\n";
+    int ord;
+    cin >> ord;
+
+    if (ord) {
+        switch (ord) {
+            case 1:
+                loadImage();
+                black_and_WhiteFilter();
+                saveImage();
+                goto re;
+            case 2:
+                loadImage();
+                InvertImage();
+                saveImage();
+                goto re;
+            case 3:
+                loadImage();
+                MergeImages();
+                saveImage();
+                goto re;
+            case 4:
+                loadImage();
+                FlipImage();
+                saveImage();
+                goto re;
+            case 5:
+                loadImage();
+                DarkenAndLighten();
+                saveImage();
+                goto re;
+            case 6:
+                loadImage();
+                Mirror();
+                saveImage();
+                goto re;
+            case 7:
+                loadImage();
+                Rotate();
+                saveImage();
+                goto re;
+            case 8:
+                loadImage();
+                crop();
+                saveImage();
+                goto re;
+            case 9:
+                loadImage();
+                DetectImageEdges();
+                saveImage();
+                goto re;
+            case 10:
+                loadImage();
+                blur();
+                saveImage();
+                goto re;
+            case 11:
+                loadImage();
+                shrink();
+                saveImage();
+                goto re;
+            case 12:
+                loadImage();
+                EnlargeImage();
+                saveImage();
+                goto re;
+            case 13:
+                loadImage();
+                SkewRight();
+                saveImage();
+                goto re;
+            case 14:
+                loadImage();
+                SkewUp();
+                saveImage();
+                goto re;
+            case 15:
+                loadImage();
+                shuffle();
+                saveImage();
+                goto re;
+
+        }
+    }
+
+
 }
 
 
